@@ -1,0 +1,7 @@
+* Clojure Jni Example
+
+WIP
+
+* References:
+- [[https://en.wikipedia.org/wiki/Java_Native_Interface][Java Native Interface]]
+- [[https://en.wikipedia.org/wiki/Application_binary_interface][Application Binary Interface]]

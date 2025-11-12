@@ -1,0 +1,6 @@
+**/*.h
+**/*.class
+**/*.so
+.direnv/
+.cpcache/
+.nrepl-port

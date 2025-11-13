@@ -5,3 +5,4 @@ Some examples of native code being called from both Java and Clojure.
 * References:
 - [[https://en.wikipedia.org/wiki/Java_Native_Interface][Java Native Interface]]
 - [[https://en.wikipedia.org/wiki/Application_binary_interface][Application Binary Interface]]
+- [[https://docs.oracle.com/en/java/javase/21/docs/specs/jni/index.html][Java 21 - JNI spec]]

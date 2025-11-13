@@ -1,7 +1,6 @@
 #include <jni.h>
 #include <stdio.h>
 #include <string.h>
-#include <unistd.h>
 #include "Asm_Asm.h"
 
 JNIEXPORT void JNICALL Java_Asm_Asm_inlineasm(JNIEnv *env, jobject thisObj, jstring sometext) {

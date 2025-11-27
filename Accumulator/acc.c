@@ -3,13 +3,22 @@
 #include "Accumulator_Acc.h"
 
 jfieldID getValueFieldId(JNIEnv *env, jobject thisObj) {
-    jclass this = (*env)->GetObjectClass(env, thisObj);
-    return (*env)->GetFieldID(env, this, "value", "I");
+    jclass this_class = (*env)->GetObjectClass(env, thisObj);
+
+    jfieldID fid = (*env)->GetFieldID(env, this_class, "value", "I");
+
+    (*env)->DeleteLocalRef(env, this_class);
+
+    return fid;
 }
 
 JNIEXPORT void JNICALL Java_Accumulator_Acc_accumulate(JNIEnv *env, jobject thisObj, jint x) {
     jfieldID field_id = getValueFieldId(env, thisObj);
-    if (field_id == NULL) return;
+    if (field_id == NULL) {
+        jclass exClass = (*env)->FindClass(env, "java/lang/Exception");
+        (*env)->ThrowNew(env, exClass, "Error while access accumulator value.");
+        return;
+    }
 
     jint current_value = (*env)->GetIntField(env, thisObj, field_id);
 
@@ -21,7 +30,11 @@ JNIEXPORT void JNICALL Java_Accumulator_Acc_accumulate(JNIEnv *env, jobject this
 
 JNIEXPORT jint JNICALL Java_Accumulator_Acc_getValue(JNIEnv *env, jobject thisObj) {
     jfieldID field_id = getValueFieldId(env, thisObj);
-    if (field_id == NULL) return 0;
+    if (field_id == NULL) {
+        jclass exClass = (*env)->FindClass(env, "java/lang/Exception");
+        (*env)->ThrowNew(env, exClass, "Error while access accumulator value.");
+        return 0;
+    }
 
     jint current_value = (*env)->GetIntField(env, thisObj, field_id);
 
